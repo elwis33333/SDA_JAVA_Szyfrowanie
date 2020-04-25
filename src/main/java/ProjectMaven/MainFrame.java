@@ -1,6 +1,7 @@
 package ProjectMaven;
 
 import ProjectMaven.tool.InputManager;
+import ProjectMaven.tool.ProceedAlgorithm;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +11,11 @@ import java.awt.event.KeyEvent;
 
 public class MainFrame extends JFrame implements ActionListener {
     private JTextArea logArea;
-
+    private JTextField inputFile;
+    private JTextField outputFile;
+    private JComboBox ciphersCombo;
+    private JRadioButton encodeButton;
+    private JButton runAlgorithmButton;
     public void startGui() throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException {
         UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel"); //zmiana stylu na zdefiniowany w javie
         JFrame mainFrame = new JFrame("Crypto app");
@@ -19,8 +24,13 @@ public class MainFrame extends JFrame implements ActionListener {
         mainFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         mainFrame.setJMenuBar(addMenuBar());
         mainFrame.add(addMainPanel());
+        setListeners();
         mainFrame.setVisible(true);
         mainFrame.pack();
+    }
+
+    private void setListeners() {
+        runAlgorithmButton.addActionListener(new ProceedAlgorithm(inputFile, outputFile, ciphersCombo, encodeButton, logArea));
     }
 
     private JMenuBar addMenuBar() {
@@ -56,10 +66,10 @@ public class MainFrame extends JFrame implements ActionListener {
         constr.fill = GridBagConstraints.HORIZONTAL;
         constr.gridy = 1;
         panel.add(addSubpanelWithControlers(), constr);
-        JButton runalgorithm = new JButton("Run and let miracles happen");
+        runAlgorithmButton = new JButton("Run and let miracles happen");
         constr.gridy = 2;
         constr.insets = new Insets(5,3,1,3);
-        panel.add(runalgorithm, constr);
+        panel.add(runAlgorithmButton, constr);
 /////////////////////tu by było  logArea = new JTextArea(8,10);  ale trzeba było to wcześniej zdeninniować
         //logArea.setLineWrap(true);
         logArea.setVisible(true);
@@ -79,15 +89,15 @@ public class MainFrame extends JFrame implements ActionListener {
         JLabel sourcelabel = new JLabel("Source file:");
         JLabel destinationlabel = new JLabel("Destination:");
         JLabel chooselabel = new JLabel("Choose cipher:");
-        JTextField inputFile = new JTextField("input.txt",15);
-        JTextField outputFile = new JTextField("output.txt",15);
+        inputFile = new JTextField("input.txt",15);
+        outputFile = new JTextField("output.txt",15);
         JButton chooseInput = new JButton("Select");
         chooseInput.addActionListener(new InputManager(inputFile, logArea));
         JButton chooseOutput = new JButton("Select");
         chooseOutput.addActionListener(new InputManager(outputFile, logArea));
-        JComboBox ciphersCombo = new JComboBox(new String[]{"Cesar", "ROT-13"});
+        ciphersCombo = new JComboBox(new String[]{"Cesar", "ROT-13"});
 
-        JRadioButton encodeButton = new JRadioButton("Encode");
+        encodeButton = new JRadioButton("Encode");
         encodeButton.setSelected(true);
         JRadioButton decodeButton = new JRadioButton("Decode");
         ButtonGroup grup = new ButtonGroup();
