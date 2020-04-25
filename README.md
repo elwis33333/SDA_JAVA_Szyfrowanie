@@ -1,0 +1,36 @@
+# Purpose of repository
+
+### The project is pointed to people who want to learn something new and hone their own developer skills.
+
+We're going to leverage:
+
+- Java knowledge
+
+- design patterns
+
+- enhance testing skills
+
+- develop skills to work with a team, especially with git-tool
+
+
+What we'll do during this project
+
+- implementation few fancy algorithms
+
+    - Cesar [go there][cesar_page]
+
+    - ROT-13 [go there][rot13_page]
+
+    - Vigenere [take me there][vigenere_page]
+
+    - Matrix [let's go][matrix_page]
+
+    - AtBash [nice, WTF?][AtBash_page]
+    
+    
+    
+  [cesar_page]: <../../Desktop/JAVA%20NAUKA/szyfr/SDA11_JAVA_20200419-master/src/main/java/sda/ciphers/CesarGuide.md> (Cesar cipher guideline)
+  [rot13_page]: <../../Desktop/JAVA%20NAUKA/szyfr/SDA11_JAVA_20200419-master/src/main/java/sda/ciphers/Rot13Guide.md> (ROT-13 cipher guideline)
+  [vigenere_page]: <../../Desktop/JAVA%20NAUKA/szyfr/SDA11_JAVA_20200419-master/src/main/java/sda/ciphers/VigenereGuide.md> (Vigenere cipher guideline)
+  [matrix_page]: <../../Desktop/JAVA%20NAUKA/szyfr/SDA11_JAVA_20200419-master/src/main/java/sda/ciphers/MatrixGuide.md> (Matrix cipher guideline)
+  [AtBash_page]: <../../Desktop/JAVA%20NAUKA/szyfr/SDA11_JAVA_20200419-master/src/main/java/sda/ciphers/AtBashGuide.md> (AtBash cipher guideline)
