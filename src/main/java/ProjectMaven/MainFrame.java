@@ -1,5 +1,7 @@
 package ProjectMaven;
 
+import ProjectMaven.tool.InputManager;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,6 +9,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 public class MainFrame extends JFrame implements ActionListener {
+    private JTextArea logArea;
+
     public void startGui() throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException {
         UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel"); //zmiana stylu na zdefiniowany w javie
         JFrame mainFrame = new JFrame("Crypto app");
@@ -27,7 +31,7 @@ public class MainFrame extends JFrame implements ActionListener {
         exit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.ALT_MASK));
         exit.addActionListener(this);
         fileMenu.add(exit);
-        
+
         JMenuBar menuBar = new JMenuBar();
         menuBar.add(fileMenu);
         menuBar.add(optMenu);
@@ -40,6 +44,7 @@ public class MainFrame extends JFrame implements ActionListener {
         GridBagLayout layout = new GridBagLayout();
         panel.setLayout(layout);
         GridBagConstraints constr = new GridBagConstraints();
+        logArea = new JTextArea(8,10); ///musiała tu zostać zamieszczona żeby z przycisków select można było wypisywać tekst na tym polu
         //TODO get this value from properties
         JLabel titleLabel = new JLabel("Enigma Machine");
         titleLabel.setFont(new Font("Arial", Font.BOLD, 28));
@@ -55,7 +60,7 @@ public class MainFrame extends JFrame implements ActionListener {
         constr.gridy = 2;
         constr.insets = new Insets(5,3,1,3);
         panel.add(runalgorithm, constr);
-        JTextArea logArea = new JTextArea(8,10);
+/////////////////////tu by było  logArea = new JTextArea(8,10);  ale trzeba było to wcześniej zdeninniować
         //logArea.setLineWrap(true);
         logArea.setVisible(true);
         JScrollPane scroll = new JScrollPane (logArea);
@@ -77,7 +82,9 @@ public class MainFrame extends JFrame implements ActionListener {
         JTextField inputFile = new JTextField("input.txt",15);
         JTextField outputFile = new JTextField("output.txt",15);
         JButton chooseInput = new JButton("Select");
+        chooseInput.addActionListener(new InputManager(inputFile, logArea));
         JButton chooseOutput = new JButton("Select");
+        chooseOutput.addActionListener(new InputManager(outputFile, logArea));
         JComboBox ciphersCombo = new JComboBox(new String[]{"Cesar", "ROT-13"});
 
         JRadioButton encodeButton = new JRadioButton("Encode");
