@@ -4,7 +4,8 @@ public class AtBashCipher {
     private String base;
     private String encoded;
     private String decoded;
-    private String alphabet = "abcdefghijklmnopqrstuvwxyz";
+    private String alphabet = "abcdefghijklmnopqrstuvwxyz"; //26
+    private String alphabet2 = "0123456789";//10
 
     public AtBashCipher() {
         base = "";
@@ -26,20 +27,31 @@ public class AtBashCipher {
         StringBuilder tempEncode = new StringBuilder();
         for (int i = 0; i < base.length(); i++) {
             Character letter = base.charAt(i);
-            if(!Character.isLetter(letter)) continue;
-            final boolean isLower = Character.isLowerCase(letter);
-            if (!isLower) {
-                letter = Character.toLowerCase(letter);
+            if(!Character.isLetter(letter) && !Character.isDigit(letter)) continue;
+            if (Character.isLetter(letter)) {
+                final boolean isLower = Character.isLowerCase(letter);
+                if (!isLower) {
+                    letter = Character.toLowerCase(letter);
+                }
+                final int position = alphabet.indexOf(letter);
+                final char c = alphabet.charAt(getEncodedPossition(position));
+                tempEncode.append(isLower ? c : Character.toUpperCase(c));
             }
-            final int position = alphabet.indexOf(letter);
-            final char c = alphabet.charAt(getEncodedPossition(position));
-            tempEncode.append(isLower?c:Character.toUpperCase(c));
+            else if (Character.isDigit(letter)){
+                final int position = alphabet2.indexOf(letter);
+                final char c = alphabet2.charAt(getEncodedPossition2(position));
+                tempEncode.append(c);
+            }
         }
         encoded = tempEncode.toString();
     }
 
+    private int getEncodedPossition2(int position) {
+        return 9-position;
+    }
+
     int getEncodedPossition(int position) {
-        return (position + 3) % 26;
+        return 25-position;
     }
 
     public String getEncode() {
@@ -54,20 +66,25 @@ public class AtBashCipher {
         StringBuilder tempEncode = new StringBuilder();
         for (int i = 0; i < base.length(); i++) {
             Character letter = base.charAt(i);
-            if(!Character.isLetter(letter)) continue;
-            final boolean isLower = Character.isLowerCase(letter);
-            if (!isLower) {
-                letter = Character.toLowerCase(letter);
+            if(!Character.isLetter(letter) && !Character.isDigit(letter)) continue;
+            if (Character.isLetter(letter)) {
+                final boolean isLower = Character.isLowerCase(letter);
+                if (!isLower) {
+                    letter = Character.toLowerCase(letter);
+                }
+                final int position = alphabet.indexOf(letter);
+                final char c = alphabet.charAt(getEncodedPossition(position));
+                tempEncode.append(isLower ? c : Character.toUpperCase(c));
             }
-            final int position = alphabet.indexOf(letter);
-            final char c = alphabet.charAt(getDecodedPossition(position));
-            tempEncode.append(isLower?c:Character.toUpperCase(c));
+            else if (Character.isDigit(letter)){
+                final int position = alphabet2.indexOf(letter);
+                final char c = alphabet2.charAt(getEncodedPossition2(position));
+                tempEncode.append(c);
+            }
         }
         decoded = tempEncode.toString();
     }
-    int getDecodedPossition(int position) {
-        return (position +23) % 26;
-    }
+
 
 
     //TODO
