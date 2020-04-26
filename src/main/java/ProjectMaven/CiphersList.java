@@ -14,7 +14,7 @@ public enum CiphersList {
     CiphersList(String cipherName){
         this.cipherName=cipherName;
     }
-    public String[] getCiphersList(){
+    public static String[] getCiphersList(){
         String[] list = new String[0];
         Arrays.stream(CiphersList.values())
                 .map(c->c.cipherName)
