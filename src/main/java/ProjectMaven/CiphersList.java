@@ -5,9 +5,10 @@ import java.util.stream.Collectors;
 
 public enum CiphersList {
     CESAR("Cesar"),
-    Rot13("ROT-13"),
+    ROT13("ROT-13"),
     ATBSH("AtBash"),
-    MATRIX("Matrix");
+    MATRIX("Matrix"),
+    SHA256("SHA256");
 
     private String cipherName;
 
@@ -15,11 +16,12 @@ public enum CiphersList {
         this.cipherName=cipherName;
     }
     public static String[] getCiphersList(){
-        String[] list = new String[0];
-        Arrays.stream(CiphersList.values())
-                .map(c->c.cipherName)
-                .collect(Collectors.toList())
-                .toArray(list);
+        String[] list = Arrays.stream(CiphersList.values())
+                .map(c -> c.cipherName).sorted().toArray(String[]::new);
         return list;
+    }
+    public static CiphersList getCipher(String cipher){
+        cipher = cipher.replaceAll("[^a-zA-Z0-9_]*","").toUpperCase();
+        return CiphersList.valueOf(cipher);
     }
 }
