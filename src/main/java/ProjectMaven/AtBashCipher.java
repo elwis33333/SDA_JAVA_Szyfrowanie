@@ -1,6 +1,6 @@
 package ProjectMaven;
 
-public class AtBashCipher {
+public class AtBashCipher implements ICipher{
     private String base;
     private String encoded;
     private String decoded;
@@ -60,6 +60,9 @@ public class AtBashCipher {
 
     public String getDecode() {
         return decoded;
+    }
+    public void setBase(String base) {
+        this.base = base;
     }
 
     public void decode() {

@@ -1,6 +1,6 @@
 package ProjectMaven;
 
-public class Rot13Cipher extends CesarCipher{
+public class Rot13Cipher extends CesarCipher implements ICipher{
     public Rot13Cipher() {
        super();
     }

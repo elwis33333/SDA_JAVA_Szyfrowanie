@@ -1,6 +1,6 @@
 package ProjectMaven;
 
-public class MatrixCipher {
+public class MatrixCipher implements ICipher{
     private String base;
     private String encoded;
     private String decoded;
@@ -82,7 +82,9 @@ public class MatrixCipher {
     public String getDecode() {
         return decoded;
     }
-
+    public void setBase(String base) {
+        this.base = base;
+    }
     //TODO
     /*
      * przyjmuje tekst do testowania

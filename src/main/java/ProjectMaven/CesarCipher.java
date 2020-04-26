@@ -1,6 +1,6 @@
 package ProjectMaven;
 
-public class CesarCipher {
+public class CesarCipher implements ICipher{
     private String base;
     private String encoded;
     private String decoded;
@@ -20,6 +20,10 @@ public class CesarCipher {
 
     public String getBase() {
         return base;
+    }
+
+    public void setBase(String base) {
+        this.base = base;
     }
 
     public void encode() {

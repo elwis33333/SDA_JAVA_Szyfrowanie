@@ -95,7 +95,7 @@ public class MainFrame extends JFrame implements ActionListener {
         chooseInput.addActionListener(new InputManager(inputFile, logArea));
         JButton chooseOutput = new JButton("Select");
         chooseOutput.addActionListener(new InputManager(outputFile, logArea));
-        ciphersCombo = new JComboBox(new String[]{"Cesar", "ROT-13"});
+        ciphersCombo = new JComboBox(new String[]{"Cesar", "ROT-13","Matrix","AtBash"});
 
         encodeButton = new JRadioButton("Encode");
         encodeButton.setSelected(true);
