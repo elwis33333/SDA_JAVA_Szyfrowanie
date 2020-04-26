@@ -13,7 +13,7 @@ import java.util.Properties;
 public class MailPrototype {
     private static SimpleEmail INSTANCE;
 
-    private MailPrototype() throws IOException {
+    private MailPrototype() throws IOException, EmailException {
         Properties properties = new Properties();
          properties.load(new FileReader("./src/main/resources/mail.properties"));
         INSTANCE = new SimpleEmail();
@@ -21,9 +21,9 @@ public class MailPrototype {
         INSTANCE.setSmtpPort(Integer.parseInt(properties.getProperty("email.port")));
         INSTANCE.setAuthenticator(new DefaultAuthenticator(properties.getProperty("email.user"), properties.getProperty("email.pass")));
         INSTANCE.setSSLOnConnect(true);
-        /*
-        email.setFrom("user@gmail.com");
-        email.setSubject("TestMail");
+
+        INSTANCE.setFrom(properties.getProperty("email.user"));
+        /*INSTANCE.setSubject("TestMail");
         email.setMsg("This is a test mail ... :-)");
         email.addTo("foo@bar.com");*/
     }
@@ -31,7 +31,7 @@ public class MailPrototype {
         if(INSTANCE==null){
             try {
                 new MailPrototype();
-            } catch (IOException e) {
+            } catch (IOException | EmailException e) {
                 e.printStackTrace();
             }
 

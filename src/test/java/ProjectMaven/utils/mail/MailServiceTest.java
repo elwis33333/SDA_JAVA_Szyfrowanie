@@ -13,7 +13,6 @@ class MailServiceTest {
         //given
         final MailService service = new MailService
                 .MailBuilder("elwis33333@wp.pl", "test mail")
-                .setFrom("annarybak95@wp.pl")
                 .addBody("test")
                 .build();
         //when

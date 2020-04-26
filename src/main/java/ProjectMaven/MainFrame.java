@@ -1,6 +1,7 @@
 package ProjectMaven;
 
 import ProjectMaven.tool.InputManager;
+import ProjectMaven.tool.MailMenager;
 import ProjectMaven.tool.ProceedAlgorithm;
 
 import javax.swing.*;
@@ -41,6 +42,11 @@ public class MainFrame extends JFrame implements ActionListener {
         exit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.ALT_MASK));
         exit.addActionListener(this);
         fileMenu.add(exit);
+
+        JMenuItem mailing = new JMenuItem("Send email from annarybak95@wp.pl to....");
+        mailing.addActionListener(new MailMenager());
+        optMenu.add(mailing);
+
 
         JMenuBar menuBar = new JMenuBar();
         menuBar.add(fileMenu);
