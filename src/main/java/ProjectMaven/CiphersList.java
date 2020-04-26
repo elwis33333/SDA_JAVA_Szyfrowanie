@@ -8,7 +8,8 @@ public enum CiphersList {
     ROT13("ROT-13"),
     ATBSH("AtBash"),
     MATRIX("Matrix"),
-    SHA256("SHA256");
+    SHA256("SHA256"),
+    VIGENERE("Vigenere");
 
     private String cipherName;
 
